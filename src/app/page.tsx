@@ -1,12 +1,14 @@
-import React from "react";
+import { GetInTouch } from "@/components/common/GetInTouch";
 import HeroSection from "@/components/common/HeroSection";
-import AboutSection from "@/components/common/AboutSection";
+import PlatformFeatures from "@/components/common/PlatformFeatures";
 
 export default function Home() {
   return (
-    <div>
+    <main>
       <HeroSection />
+      <PlatformFeatures />
+      <GetInTouch />
       <AboutSection />
-    </div>
+    </main>
   );
 }
