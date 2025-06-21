@@ -28,6 +28,7 @@ export default function Navbar({
     { label: "About", href: "/about" },
     { label: "Features", href: "/features" },
     { label: "Contact", href: "/contact" },
+    { label: "Privacy", href: "/privacy" },
   ],
 }: NavbarProps) {
   // Theme state
