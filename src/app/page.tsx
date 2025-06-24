@@ -7,9 +7,9 @@ export default function Home() {
   return (
     <main>
       <HeroSection />
+      <AboutSection />
       <PlatformFeatures />
       <GetInTouch />
-      <AboutSection />
     </main>
   );
 }
