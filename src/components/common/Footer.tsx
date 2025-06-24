@@ -83,6 +83,16 @@ export default function Footer() {
                   API
                 </Link>
               </li>
+              <li>
+                <Link href="/privacy" className="text-gray-300 hover:text-blue-400 text-sm">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="text-gray-300 hover:text-blue-400 text-sm">
+                  Terms & Conditions
+                </Link>
+              </li>
             </ul>
           </div>
 
