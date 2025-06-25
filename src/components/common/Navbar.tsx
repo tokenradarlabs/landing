@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import CustomButton from "./CustomButton";
+import Link from "next/link";
 
 export interface NavLink {
   label: string;
@@ -25,9 +26,9 @@ interface NavbarProps {
 export default function Navbar({
   links = [
     { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Features", href: "/features" },
-    { label: "Contact", href: "/contact" },
+    { label: "About", href: "#about" },
+    { label: "Features", href: "#features" },
+    { label: "Contact", href: "#contact" },
     { label: "Privacy", href: "/privacy" },
     { label: "Terms", href: "/terms" },
   ],
@@ -68,6 +69,20 @@ export default function Navbar({
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
+  // Handle scroll to section when clicking on anchor links
+  const handleNavClick = (href: string) => {
+    if (href.startsWith('#')) {
+      const targetId = href.substring(1);
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+    }
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass">
       <div className="container mx-auto px-6 py-4">
@@ -85,13 +100,24 @@ export default function Navbar({
           {/* Nav Links (hidden on mobile) */}
           <div className="hidden md:flex items-center space-x-8">
             {links.map((link) => (
-              <button
-                key={link.label}
-                className="text-white dark:text-black hover:text-blue-400 dark:hover:text-blue-500 transition-colors cursor-pointer"
-                type="button"
-              >
-                {link.label}
-              </button>
+              link.href.startsWith('#') ? (
+                <button
+                  key={link.label}
+                  className="text-white dark:text-black hover:text-blue-400 dark:hover:text-blue-500 transition-colors cursor-pointer"
+                  type="button"
+                  onClick={() => handleNavClick(link.href)}
+                >
+                  {link.label}
+                </button>
+              ) : (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-white dark:text-black hover:text-blue-400 dark:hover:text-blue-500 transition-colors cursor-pointer"
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
           </div>
 

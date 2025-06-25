@@ -76,7 +76,7 @@ const features = [
 
 export default function PlatformFeatures() {
   return (
-    <section className="py-20 px-4 bg-white dark:bg-zinc-950">
+    <section id="features" className="py-20 px-4 bg-white dark:bg-zinc-950">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 font-sans bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
