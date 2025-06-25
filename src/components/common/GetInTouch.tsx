@@ -20,8 +20,8 @@ export const GetInTouch = () => {
           </p>
         </div>
 
-        <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-          <CustomCard className="bg-gray-50 dark:bg-gray-800 p-6 md:p-8">
+        <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+          <CustomCard className="bg-gray-50 dark:bg-gray-800 p-6 md:p-8 h-full flex flex-col">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white">
               Connect with TokenRadar Labs
             </h3>
@@ -79,57 +79,59 @@ export const GetInTouch = () => {
             </div>
           </CustomCard>
 
-          <CustomCard className="bg-gray-50 dark:bg-gray-800 p-6 md:p-8">
+          <CustomCard className="bg-gray-50 dark:bg-gray-800 p-6 md:p-8 h-full flex flex-col">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white">
               Contact Form
             </h3>
-            <form className="mt-6 space-y-6">
-              <div>
-                <label
-                  htmlFor="full-name"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                >
-                  Full Name <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="full-name"
-                  id="full-name"
-                  placeholder="Your full name"
-                  className="mt-2 block w-full px-3 py-2 bg-white dark:bg-gray-700 border-none rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm"
-                />
+            <form className="mt-6 space-y-6 flex-1 flex flex-col justify-between">
+              <div className="space-y-6">
+                <div>
+                  <label
+                    htmlFor="full-name"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >
+                    Full Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="full-name"
+                    id="full-name"
+                    placeholder="Your full name"
+                    className="mt-2 block w-full px-3 py-2 bg-white dark:bg-gray-700 border-none rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >
+                    Email Address <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="your.email@example.com"
+                    className="mt-2 block w-full px-3 py-2 bg-white dark:bg-gray-700 border-none rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >
+                    Message <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={4}
+                    placeholder="Tell us about your project or questions..."
+                    className="mt-2 block w-full px-3 py-2 bg-white dark:bg-gray-700 border-none rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm"
+                  ></textarea>
+                </div>
               </div>
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                >
-                  Email Address <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="your.email@example.com"
-                  className="mt-2 block w-full px-3 py-2 bg-white dark:bg-gray-700 border-none rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                >
-                  Message <span className="text-red-500">*</span>
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  placeholder="Tell us about your project or questions..."
-                  className="mt-2 block w-full px-3 py-2 bg-white dark:bg-gray-700 border-none rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm"
-                ></textarea>
-              </div>
-              <div>
+              <div className="mt-auto pt-4">
                 <CustomButton
                   className="w-full text-white bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600"
                   leftIcon={<Send size={16} />}
