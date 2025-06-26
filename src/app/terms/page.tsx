@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { NextSeo } from "next-seo";
 
 export const metadata: Metadata = {
   title: "Terms and Conditions - TokenRadar Labs",
@@ -8,6 +9,30 @@ export const metadata: Metadata = {
 export default function TermsAndConditions() {
   return (
     <main>
+      <NextSeo 
+        title="Terms and Conditions - TokenRadar Labs"
+        description="Terms and conditions for TokenRadar Labs - Rules, obligations, and user rights when accessing our services."
+        canonical="https://tokenradarlabs.com/terms"
+        openGraph={{
+          url: 'https://tokenradarlabs.com/terms',
+          title: 'Terms and Conditions - TokenRadar Labs',
+          description: 'Terms and conditions for TokenRadar Labs - Rules, obligations, and user rights when accessing our services.',
+          images: [
+            {
+              url: 'https://tokenradarlabs.com/og-image.jpg',
+              width: 1200,
+              height: 630,
+              alt: 'TokenRadar Labs Terms and Conditions',
+            },
+          ],
+        }}
+        additionalMetaTags={[
+          {
+            name: 'keywords',
+            content: 'terms of service, terms and conditions, user agreement, crypto terms, token radar terms'
+          }
+        ]}
+      />
       <div className="w-full bg-white dark:bg-slate-950">
         <section className="py-16 px-4 max-w-7xl mx-auto">
           {/* Main headline with gradient */}
