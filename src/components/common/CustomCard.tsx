@@ -41,11 +41,11 @@ export function CustomCard({
     <Card
       className={cn(
         "p-6",
-                 // Apply base styles based on type
-         type === "default" ? "bg-white" : "bg-white/10",
-         // Use specific Tailwind classes mentioned in requirements for glassmorphism effect
-         type === "transparent" && "backdrop-blur-sm bg-white/10",
-         type === "transparent" && "border rounded-lg",
+        // Apply base styles based on type
+        type === "default" ? "bg-white" : "bg-white/10",
+        // Use specific Tailwind classes mentioned in requirements for glassmorphism effect
+        type === "transparent" && "backdrop-blur-sm bg-white/10",
+        type === "transparent" && "border rounded-lg",
         className
       )}
       {...props}
