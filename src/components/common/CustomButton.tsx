@@ -7,7 +7,7 @@ interface CustomButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement
    * Button type variant
    * @default "default"
    */
-  type?: "default" | "transparent";
+  type?: "default" | "transparent" | "primary" | "secondary" | "accent";
   
   /**
    * Optional click handler
@@ -54,13 +54,21 @@ export function CustomButton({
   className,
   ...props
 }: CustomButtonProps) {
+  const buttonClasses = {
+    'default': 'bg-black text-white',
+    'transparent': 'bg-transparent border-2 hover:bg-transparent hover:opacity-80',
+    'primary': 'bg-primary text-white hover:bg-primary-dark',
+    'secondary': 'bg-secondary text-white hover:bg-secondary-dark',
+    'accent': 'bg-accent text-white hover:bg-accent-dark'
+  };
+  
   return (
     <Button
       variant={type === "transparent" ? "outline" : "default"}
       onClick={onClick}
       className={cn(
         "flex items-center justify-center gap-2",
-        type === "transparent" && "bg-transparent border-2 hover:bg-transparent hover:opacity-80",
+        buttonClasses[type],
         className
       )}
       {...props}
