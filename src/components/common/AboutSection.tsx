@@ -5,7 +5,7 @@ import CustomCard from "./CustomCard";
 
 export default function AboutSection() {
   return (
-    <div className="w-full bg-white dark:bg-slate-950">
+    <div id="about" className="w-full bg-white dark:bg-slate-950">
       <section className="py-16 px-4 text-center max-w-7xl mx-auto">
         {/* Main headline with gradient */}
         <h1 className="text-5xl md:text-6xl font-bold mb-6 font-sans">
