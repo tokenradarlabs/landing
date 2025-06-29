@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { NextSeo } from "next-seo";
 
 export const metadata: Metadata = {
   title: "Privacy Policy - TokenRadar Labs",
@@ -9,30 +8,6 @@ export const metadata: Metadata = {
 export default function PrivacyPolicy() {
   return (
     <main>
-      <NextSeo 
-        title="Privacy Policy - TokenRadar Labs"
-        description="Privacy policy for TokenRadar Labs - How we collect, use, and protect your personal information."
-        canonical="https://tokenradarlabs.com/privacy"
-        openGraph={{
-          url: 'https://tokenradarlabs.com/privacy',
-          title: 'Privacy Policy - TokenRadar Labs',
-          description: 'Privacy policy for TokenRadar Labs - How we collect, use, and protect your personal information.',
-          images: [
-            {
-              url: 'https://tokenradarlabs.com/og-image.jpg',
-              width: 1200,
-              height: 630,
-              alt: 'TokenRadar Labs Privacy Policy',
-            },
-          ],
-        }}
-        additionalMetaTags={[
-          {
-            name: 'keywords',
-            content: 'privacy policy, data protection, token radar privacy, crypto privacy policy'
-          }
-        ]}
-      />
       <div className="w-full bg-white dark:bg-slate-950">
         <section className="py-16 px-4 max-w-7xl mx-auto">
           {/* Main headline with gradient */}
