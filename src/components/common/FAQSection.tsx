@@ -1,0 +1,100 @@
+'use client';
+
+import { useState } from "react";
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+const faqs: FAQItem[] = [
+  {
+    question: "What is TokenRadar Labs?",
+    answer: "TokenRadar Labs is a cutting-edge platform that provides advanced analytics and tracking tools for blockchain and cryptocurrency markets, helping users make informed decisions through real-time data analysis and market insights."
+  },
+  {
+    question: "How do I get started with TokenRadar Labs?",
+    answer: "Getting started is easy! Simply create an account, choose your subscription plan, and you'll get immediate access to our comprehensive suite of tools and features. We also offer a guided tour and documentation to help you make the most of our platform."
+  },
+  {
+    question: "What features does TokenRadar Labs offer?",
+    answer: "Our platform offers a wide range of features including real-time market analysis, token tracking, portfolio management, price alerts, custom watchlists, advanced charting tools, and comprehensive market research capabilities."
+  },
+  {
+    question: "Is my data secure with TokenRadar Labs?",
+    answer: "Yes, we take security very seriously. We employ industry-standard encryption, secure authentication methods, and regular security audits to ensure your data and investments are protected at all times."
+  },
+  {
+    question: "Do you offer customer support?",
+    answer: "Yes, we provide 24/7 customer support through multiple channels including email, live chat, and our help center. Our dedicated support team is always ready to assist you with any questions or concerns."
+  }
+];
+
+export default function FAQSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <section className="w-full bg-white dark:bg-slate-950 py-16 px-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+              Frequently Asked Questions
+            </span>
+          </h2>
+          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+            Find answers to common questions about TokenRadar Labs and our services.
+          </p>
+        </div>
+
+        {/* FAQ Accordion */}
+        <div className="max-w-3xl mx-auto space-y-4">
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className="bg-white dark:bg-slate-800/60 rounded-lg border shadow-sm"
+            >
+              <button
+                onClick={() => toggleFAQ(index)}
+                className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-colors duration-150 rounded-lg"
+              >
+                <span className="text-lg font-medium text-slate-800 dark:text-white">
+                  {faq.question}
+                </span>
+                <span className="ml-6 flex-shrink-0">
+                  <svg
+                    className={`w-6 h-6 transform transition-transform duration-200 ${
+                      openIndex === index ? "rotate-180" : ""
+                    } text-slate-700 dark:text-white`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </span>
+              </button>
+              {openIndex === index && (
+                <div className="px-6 pb-4">
+                  <p className="text-slate-600 dark:text-slate-300">
+                    {faq.answer}
+                  </p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+} 
