@@ -1,10 +1,11 @@
 'use client';
 
+import React from "react";
 import { useState } from "react";
 
 interface FAQItem {
   question: string;
-  answer: string;
+  answer: string | React.ReactNode;
 }
 
 const faqs: FAQItem[] = [
@@ -27,6 +28,23 @@ const faqs: FAQItem[] = [
   {
     question: "Do you offer customer support?",
     answer: "Yes, we provide 24/7 customer support through multiple channels including email, live chat, and our help center. Our dedicated support team is always ready to assist you with any questions or concerns."
+  },
+  {
+    question: "What are the technical requirements to use TokenRadar Labs?",
+    answer: (
+      <>
+        To ensure the best experience with TokenRadar Labs, please review the following technical requirements:
+        <ul className="list-disc pl-6 mt-2 space-y-1">
+          <li><strong>Minimum Requirements:</strong> Modern device with at least 2GB RAM and a dual-core processor.</li>
+          <li><strong>Recommended:</strong> Latest version of Windows, macOS, or Linux with 4GB+ RAM and a recent multi-core processor.</li>
+          <li><strong>Supported Browsers:</strong> Chrome, Firefox, Edge, and Safari (latest two versions recommended).</li>
+          <li><strong>Device Compatibility:</strong> Fully compatible with desktop and most modern tablets and smartphones.</li>
+          <li><strong>Internet Speed:</strong> Minimum 5 Mbps for basic use; 20 Mbps or higher recommended for real-time analytics.</li>
+          <li><strong>Troubleshooting:</strong> If you encounter issues, try clearing your browser cache, disabling extensions, or updating your browser.</li>
+          <li><strong>Note:</strong> We regularly update our platform, so please check this FAQ for the latest requirements.</li>
+        </ul>
+      </>
+    )
   }
 ];
 
