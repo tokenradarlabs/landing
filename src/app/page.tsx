@@ -4,6 +4,7 @@ import PlatformFeatures from "@/components/common/PlatformFeatures";
 import AboutSection from "@/components/common/AboutSection";
 import FAQSection from "@/components/common/FAQSection";
 import ComingSoon from "@/components/common/ComingSoon";
+import IntegrationPartners from "@/components/common/IntegrationPartners";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <AboutSection />
       <PlatformFeatures />
       <ComingSoon />
+      <IntegrationPartners />
       <FAQSection />
       <GetInTouch />
     </main>
