@@ -5,8 +5,13 @@ const IntegrationPartners = () => {
   const partners = [
     {
       name: "Discord",
-      description: "Coming Soon",
-      icon: "/discord.svg"
+      description: "Enhance your trading experience with real-time alerts, market insights, and community engagement through our powerful Discord bot. Get instant notifications for price movements, trending tokens, and market opportunities.",
+      icon: "/discord.svg",
+      features: [
+        "Real-time price alerts",
+        "Market trend notifications",
+        "Community trading signals"
+      ]
     },
     {
       name: "Telegram",
@@ -37,7 +42,14 @@ const IntegrationPartners = () => {
               />
             </div>
             <h3 className="text-xl font-semibold mb-2">{partner.name}</h3>
-            <p className="text-gray-600">{partner.description}</p>
+            <p className="text-gray-600 mb-4">{partner.description}</p>
+            {partner.features && (
+              <ul className="list-disc text-left space-y-2 mt-2">
+                {partner.features.map((feature, index) => (
+                  <li key={index} className="text-gray-600 ml-4">{feature}</li>
+                ))}
+              </ul>
+            )}
           </Card>
         ))}
       </div>
