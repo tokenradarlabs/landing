@@ -47,7 +47,7 @@ export default function HeroSection() {
       {/* Feature Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
         {/* Card 1: Live Alerts */}
-        <CustomCard type="transparent" className="text-center p-8 font-sans">
+        <CustomCard variant="transparent" className="text-center p-8 font-sans">
           <div className="flex flex-col items-center">
             <div className="mb-4 text-primary-light">
               <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
@@ -60,7 +60,7 @@ export default function HeroSection() {
         </CustomCard>
         
         {/* Card 2: Market Insights */}
-        <CustomCard type="transparent" className="text-center p-8 font-sans">
+        <CustomCard variant="transparent" className="text-center p-8 font-sans">
           <div className="flex flex-col items-center">
             <div className="mb-4 text-accent">
               <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
@@ -73,7 +73,7 @@ export default function HeroSection() {
         </CustomCard>
         
         {/* Card 3: Community Tools */}
-        <CustomCard type="transparent" className="text-center p-8 font-sans">
+        <CustomCard variant="transparent" className="text-center p-8 font-sans">
           <div className="flex flex-col items-center">
             <div className="mb-4 text-secondary-light">
               <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><polyline points="22 12 18 16 14 12"></polyline></svg>

@@ -4,10 +4,10 @@ import { cn } from "@/lib/utils";
 
 interface CustomCardProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
-   * Card type variant
+   * Card variant style
    * @default "default"
    */
-  type?: "default" | "transparent";
+  variant?: "default" | "transparent";
   
   /**
    * Card content
@@ -26,13 +26,13 @@ interface CustomCardProps extends React.HTMLAttributes<HTMLDivElement> {
  * </CustomCard>
  * 
  * // Transparent card with glassmorphism effect
- * <CustomCard type="transparent">
+ * <CustomCard variant="transparent">
  *   <p>Card with glass effect</p>
  * </CustomCard>
  * ```
  */
 export function CustomCard({
-  type = "default",
+  variant = "default",
   children,
   className,
   ...props
@@ -41,11 +41,11 @@ export function CustomCard({
     <Card
       className={cn(
         "p-6",
-        // Apply base styles based on type
-        type === "default" ? "bg-white" : "bg-white/10",
+        // Apply base styles based on variant
+        variant === "default" ? "bg-white" : "bg-white/10",
         // Use specific Tailwind classes mentioned in requirements for glassmorphism effect
-        type === "transparent" && "backdrop-blur-sm bg-white/10",
-        type === "transparent" && "border rounded-lg",
+        variant === "transparent" && "backdrop-blur-sm bg-white/10",
+        variant === "transparent" && "border rounded-lg",
         className
       )}
       {...props}
