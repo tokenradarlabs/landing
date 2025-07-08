@@ -103,7 +103,7 @@ export default function TermsAndConditions() {
               <h2 className="text-3xl font-semibold text-slate-800 dark:text-white mb-4">Disclaimers</h2>
               <div className="text-slate-600 dark:text-slate-300 space-y-4">
                 <p>
-                  TokenRadar Labs services are provided "as is" and "as available" without any warranties of any kind, either express or implied, including but not limited to:
+                  TokenRadar Labs services are provided &quot;as is&quot; and &quot;as available&quot; without any warranties of any kind, either express or implied, including but not limited to:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>The accuracy, reliability, or completeness of content</li>
