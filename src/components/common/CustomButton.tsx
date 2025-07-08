@@ -4,10 +4,10 @@ import { cn } from "@/lib/utils";
 
 interface CustomButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
-   * Button type variant
+   * Button variant style
    * @default "default"
    */
-  type?: "default" | "transparent" | "primary" | "secondary" | "accent";
+  variant?: "default" | "transparent" | "primary" | "secondary" | "accent";
   
   /**
    * Optional click handler
@@ -31,7 +31,7 @@ interface CustomButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement
 }
 
 /**
- * CustomButton component that supports default and transparent styles with optional icons
+ * CustomButton component that supports different variants and optional icons
  * 
  * @example
  * ```tsx
@@ -39,14 +39,14 @@ interface CustomButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement
  * <CustomButton>Click me</CustomButton>
  * 
  * // Transparent button
- * <CustomButton type="transparent">Click me</CustomButton>
+ * <CustomButton variant="transparent">Click me</CustomButton>
  * 
  * // With icons
  * <CustomButton leftIcon={<Icon />} rightIcon={<Icon />}>Click me</CustomButton>
  * ```
  */
 export function CustomButton({
-  type = "default",
+  variant = "default",
   onClick,
   rightIcon,
   leftIcon,
@@ -64,11 +64,11 @@ export function CustomButton({
   
   return (
     <Button
-      variant={type === "transparent" ? "outline" : "default"}
+      variant={variant === "transparent" ? "outline" : "default"}
       onClick={onClick}
       className={cn(
         "flex items-center justify-center gap-2",
-        buttonClasses[type],
+        buttonClasses[variant],
         className
       )}
       {...props}
