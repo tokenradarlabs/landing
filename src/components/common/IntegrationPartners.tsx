@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Card } from "../ui/card";
+import CustomCard from "./CustomCard";
 
 const IntegrationPartners = () => {
   const partners = [
@@ -28,11 +28,15 @@ const IntegrationPartners = () => {
             Integration Partners
           </span>
         </h2>
-        <p className="text-gray-600">Connect with your favorite platforms</p>
+        <p className="text-white">Connect with your favorite platforms</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
         {partners.map((partner) => (
-          <Card key={partner.name} className="p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
+          <CustomCard 
+            key={partner.name} 
+            variant="transparent"
+            className="p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow"
+          >
             <div className="w-16 h-16 relative mb-4">
               <Image
                 src={partner.icon}
@@ -41,16 +45,20 @@ const IntegrationPartners = () => {
                 className="object-contain"
               />
             </div>
-            <h3 className="text-xl font-semibold mb-2">{partner.name}</h3>
-            <p className="text-gray-600 mb-4">{partner.description}</p>
+            <h3 className="text-xl font-semibold mb-2">
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                {partner.name}
+              </span>
+            </h3>
+            <p className="text-white mb-4">{partner.description}</p>
             {partner.features && (
               <ul className="list-disc text-left space-y-2 mt-2">
                 {partner.features.map((feature, index) => (
-                  <li key={index} className="text-gray-600 ml-4">{feature}</li>
+                  <li key={index} className="text-white ml-4">{feature}</li>
                 ))}
               </ul>
             )}
-          </Card>
+          </CustomCard>
         ))}
       </div>
     </section>
