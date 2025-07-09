@@ -101,7 +101,7 @@ export default function PrivacyPolicy() {
               <h2 className="text-3xl font-semibold text-slate-800 dark:text-white mb-4">Data Security</h2>
               <div className="text-slate-600 dark:text-slate-300 space-y-4">
                 <p>
-                  The security of your data is important to us, but remember that no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee its &quot;absolute&quot; security.
+                  The security of your data is important to us, but remember that no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee its absolute security.
                 </p>
                 <p>
                   We implement appropriate technical and organizational measures to protect your data against unauthorized or unlawful processing, accidental loss, destruction, or damage.

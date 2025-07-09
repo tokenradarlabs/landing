@@ -103,7 +103,7 @@ export default function Navbar({
               link.href.startsWith('#') ? (
                 <button
                   key={link.label}
-                  className="text-white dark:text-black hover:text-blue-400 dark:hover:text-blue-500 transition-colors cursor-pointer"
+                  className="text-white hover:text-blue-400 transition-colors cursor-pointer"
                   type="button"
                   onClick={() => handleNavClick(link.href)}
                 >
@@ -113,7 +113,7 @@ export default function Navbar({
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="text-white dark:text-black hover:text-blue-400 dark:hover:text-blue-500 transition-colors cursor-pointer"
+                  className="text-white hover:text-blue-400 transition-colors cursor-pointer"
                 >
                   {link.label}
                 </Link>
@@ -126,7 +126,7 @@ export default function Navbar({
             {/* Theme toggle button (icon only) */}
             <button
               onClick={toggleTheme}
-              className="inline-flex items-center justify-center text-white dark:text-black gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:text-blue-400 dark:hover:text-blue-500 h-10 w-10 rounded-full hover:bg-white/10 cursor-pointer"
+              className="inline-flex items-center justify-center text-white gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:text-blue-400 h-10 w-10 rounded-full hover:bg-white/10 cursor-pointer"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
