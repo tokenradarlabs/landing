@@ -3,7 +3,7 @@ import HeroSection from "@/components/common/HeroSection";
 import PlatformFeatures from "@/components/common/PlatformFeatures";
 import AboutSection from "@/components/common/AboutSection";
 import FAQSection from "@/components/common/FAQSection";
-import ComingSoon from "@/components/common/ComingSoon";
+import DeveloperAndSupport from "@/components/common/DeveloperAndSupport";
 import IntegrationPartners from "@/components/common/IntegrationPartners";
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <PlatformFeatures />
-      <ComingSoon />
+      <DeveloperAndSupport />
       <IntegrationPartners />
       <FAQSection />
       <GetInTouch />
