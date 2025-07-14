@@ -13,7 +13,9 @@ export default function Home() {
       <AboutSection />
       <PlatformFeatures />
       <DeveloperAndSupport />
-      <IntegrationPartners />
+      <div className="w-full bg-white dark:bg-[#0A0F23]">
+        <IntegrationPartners />
+      </div>
       <FAQSection />
       <GetInTouch />
     </main>
