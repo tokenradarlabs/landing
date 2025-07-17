@@ -29,12 +29,12 @@ export default function RootLayout({
   return (
     <html lang="en">      
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-gradient-to-br from-gray-100 via-white to-gray-100 dark:from-slate-900 dark:via-blue-900 dark:to-slate-950`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-gradient-to-br from-gray-100 via-white to-gray-100 dark:from-[#0A0F23] dark:via-[#0A0F23] dark:to-[#0A0F23]`}
       >
         <Navbar />
-        <div className="pt-20">
+        <main>
           {children}
-        </div>
+        </main>
         <Footer />
       </body>
     </html>
