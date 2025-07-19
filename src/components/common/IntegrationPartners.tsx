@@ -35,7 +35,7 @@ const IntegrationPartners = () => {
           <CustomCard 
             key={partner.name} 
             variant="transparent"
-            className="p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow"
+            className="p-6 flex flex-col items-center text-left hover:shadow-lg transition-shadow"
           >
             <div className="w-16 h-16 relative mb-4">
               <Image
@@ -50,13 +50,19 @@ const IntegrationPartners = () => {
                 {partner.name}
               </span>
             </h3>
-            <p className="text-gray-700 dark:text-white mb-4">{partner.description}</p>
-            {partner.features && (
-              <ul className="list-disc text-left space-y-2 mt-2">
-                {partner.features.map((feature, index) => (
-                  <li key={index} className="text-gray-700 dark:text-white ml-4">{feature}</li>
-                ))}
-              </ul>
+            {partner.features ? (
+              <div className="w-full text-left">
+                <p className="text-gray-700 dark:text-white mb-4">{partner.description}</p>
+                <ul className="list-none pl-0 text-left space-y-2 mt-2">
+                  {partner.features.map((feature, index) => (
+                    <li key={index} className="text-gray-700 dark:text-white text-left ml-0 before:content-['•'] before:mr-2 before:text-blue-400">
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <p className="text-gray-700 dark:text-white mb-4 w-full text-center">{partner.description}</p>
             )}
           </CustomCard>
         ))}
