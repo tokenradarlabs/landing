@@ -89,11 +89,7 @@ export default function Navbar({
         <nav className="flex items-center justify-between relative">
           {/* Logo and Brand */}
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center shadow-lg">
-              <div className="w-6 h-6 border-2 border-white rounded-full relative">
-                <div className="absolute inset-1 bg-white rounded-full"></div>
-              </div>
-            </div>
+            <img src="/Icon.png" alt="Logo" className="w-10 h-10 rounded-lg" />
             <div className="font-display font-bold text-2xl gradient-text">TokenRadar Labs</div>
           </div>
 
