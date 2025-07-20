@@ -35,6 +35,7 @@ export default function Navbar({
 }: NavbarProps) {
   // Theme state
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Initialize theme from localStorage and system preference on component mount
   useEffect(() => {
@@ -81,17 +82,17 @@ export default function Navbar({
         });
       }
     }
+    setMobileMenuOpen(false); // Close mobile menu after click
   };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass">
       <div className="container mx-auto px-6 py-4">
         <nav className="flex items-center justify-between relative">
-          {/* Logo and Brand */}
-          <div className="flex items-center space-x-3">
-            <img src="/Icon.png" alt="Logo" className="w-10 h-10 rounded-lg" />
-            <div className="font-display font-bold text-2xl gradient-text">TokenRadar Labs</div>
-          </div>
+          {/* Logo and Brand (flex-1 to push right content) */}
+          <div className="flex items-center space-x-3 flex-1 min-w-0">
+            <img src="/Icon.png" alt="Logo" className="w-10 h-10 rounded-lg flex-shrink-0" />
+            <div className="font-display font-bold text-2xl gradient-text truncate">TokenRadar Labs</div>
 
           {/* Nav Links (hidden on mobile) */}
           <div className="hidden md:flex items-center space-x-8">
@@ -117,9 +118,33 @@ export default function Navbar({
             ))}
           </div>
 
-          {/* Actions: Theme toggle & CTA */}
+          {/* Right side: nav links (desktop), actions, hamburger (mobile) */}
           <div className="flex items-center space-x-4">
-            {/* Theme toggle button (icon only) */}
+            {/* Nav Links (hidden on mobile) */}
+            <div className="hidden md:flex items-center space-x-8">
+              {links.map((link) => (
+                link.href.startsWith('#') ? (
+                  <button
+                    key={link.label}
+                    className="text-white hover:text-blue-400 transition-colors cursor-pointer"
+                    type="button"
+                    onClick={() => handleNavClick(link.href)}
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="text-white hover:text-blue-400 transition-colors cursor-pointer"
+                  >
+                    {link.label}
+                  </Link>
+                )
+              ))}
+            </div>
+
+            {/* Actions: Theme toggle & CTA */}
             <button
               onClick={toggleTheme}
               className="inline-flex items-center justify-center text-white gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:text-blue-400 h-10 w-10 rounded-full hover:bg-white/10 cursor-pointer"
@@ -143,13 +168,59 @@ export default function Navbar({
                 </svg>
               )}
             </button>
-            {/* Get Started CTA using CustomButton */}
             <CustomButton
               className="get-started-btn rounded-md h-10 px-4 py-2 cursor-pointer"
             >
               Get Started
             </CustomButton>
+
+            {/* Hamburger menu button (mobile only) */}
+            <button
+              className="md:hidden flex items-center justify-center w-10 h-10 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+              onClick={() => setMobileMenuOpen((open) => !open)}
+              aria-label="Toggle menu"
+              type="button"
+            >
+              {mobileMenuOpen ? (
+                // Close icon
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-7 h-7 text-white">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                // Hamburger icon
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-7 h-7 text-white">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
           </div>
+
+          {/* Mobile menu dropdown */}
+          {mobileMenuOpen && (
+            <div className="absolute top-full left-0 w-full bg-white/90 dark:bg-gray-900/95 shadow-lg rounded-b-lg flex flex-col items-start px-6 py-4 space-y-4 md:hidden animate-fade-in z-40">
+              {links.map((link) => (
+                link.href.startsWith('#') ? (
+                  <button
+                    key={link.label}
+                    className="text-gray-900 dark:text-white text-lg font-medium hover:text-blue-500 transition-colors cursor-pointer w-full text-left"
+                    type="button"
+                    onClick={() => handleNavClick(link.href)}
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="text-gray-900 dark:text-white text-lg font-medium hover:text-blue-500 transition-colors cursor-pointer w-full block"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              ))}
+            </div>
+          )}
         </nav>
       </div>
     </header>
