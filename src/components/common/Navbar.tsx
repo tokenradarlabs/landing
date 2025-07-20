@@ -93,6 +93,29 @@ export default function Navbar({
           <div className="flex items-center space-x-3 flex-1 min-w-0">
             <img src="/Icon.png" alt="Logo" className="w-10 h-10 rounded-lg flex-shrink-0" />
             <div className="font-display font-bold text-2xl gradient-text truncate">TokenRadar Labs</div>
+
+          {/* Nav Links (hidden on mobile) */}
+          <div className="hidden md:flex items-center space-x-8">
+            {links.map((link) => (
+              link.href.startsWith('#') ? (
+                <button
+                  key={link.label}
+                  className="text-white hover:text-blue-400 transition-colors cursor-pointer"
+                  type="button"
+                  onClick={() => handleNavClick(link.href)}
+                >
+                  {link.label}
+                </button>
+              ) : (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-white hover:text-blue-400 transition-colors cursor-pointer"
+                >
+                  {link.label}
+                </Link>
+              )
+            ))}
           </div>
 
           {/* Right side: nav links (desktop), actions, hamburger (mobile) */}
