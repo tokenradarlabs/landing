@@ -10,9 +10,7 @@ export default function HeroSection() {
       <div className="flex flex-col items-center justify-center py-16 pt-32 px-4 text-center max-w-7xl mx-auto">
         {/* Logo and title in one line */}
         <div className="mb-8 flex items-center justify-center">
-          <div className="w-14 h-14 mr-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center">
-            <div className="w-8 h-8 bg-white rounded-full"></div>
-          </div>
+          <img src="/Icon.png" alt="Logo" className="w-15 h-15 rounded-lg" />
           <h3 className="text-xl font-medium font-sans bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">TokenRadar Labs</h3>
         </div>
         
