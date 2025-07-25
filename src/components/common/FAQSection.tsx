@@ -104,9 +104,9 @@ export default function FAQSection() {
               </button>
               {openIndex === index && (
                 <div className="px-6 pb-4">
-                  <p className="text-slate-600 dark:text-slate-300">
+                  <div className="text-slate-600 dark:text-slate-300">
                     {faq.answer}
-                  </p>
+                  </div>
                 </div>
               )}
             </div>
