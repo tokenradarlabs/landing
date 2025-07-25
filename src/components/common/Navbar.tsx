@@ -93,7 +93,7 @@ export default function Navbar({
           <div className="flex items-center space-x-3 flex-1 min-w-0">
             <img src="/Icon.png" alt="Logo" className="w-10 h-10 rounded-lg flex-shrink-0" />
             <div className="font-display font-bold text-2xl gradient-text truncate">TokenRadar Labs</div>
-
+          </div>
           {/* Nav Links (hidden on mobile) */}
           <div className="hidden md:flex items-center space-x-8">
             {links.map((link) => (
