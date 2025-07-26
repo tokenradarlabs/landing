@@ -76,7 +76,7 @@ const features = [
 
 export default function PlatformFeatures() {
   return (
-    <section id="features" className="py-20 px-4 bg-white dark:bg-zinc-950">
+    <section id="features" className="py-20 px-4 bg-purple-50 dark:bg-zinc-950">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 font-sans bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
@@ -91,7 +91,7 @@ export default function PlatformFeatures() {
           {features.map((feature, index) => (
             <CustomCard
               key={index}
-              className="p-8 bg-white dark:bg-zinc-900 rounded-xl transform transition-transform duration-300 hover:-translate-y-2 shadow-[0_4px_12px_0px_rgba(0,0,0,0.1)]"
+              className="p-8 bg-gradient-to-br from-white to-purple-50/50 dark:bg-zinc-900 dark:from-transparent dark:to-transparent rounded-xl transform transition-transform duration-300 hover:-translate-y-2 shadow-[0_4px_12px_0px_rgba(0,0,0,0.1)]"
             >
               <div className="space-y-4">
                 {feature.icon}

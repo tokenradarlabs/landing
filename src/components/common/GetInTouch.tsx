@@ -5,7 +5,7 @@ import { Mail, Globe, MapPin, Send } from "lucide-react";
 
 export const GetInTouch = () => {
   return (
-    <section id="contact" className="bg-white dark:bg-gray-800 py-12 md:py-20">
+    <section id="contact" className="bg-rose-50 dark:bg-gray-800 py-12 md:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl md:text-4xl font-extrabold">
@@ -21,7 +21,7 @@ export const GetInTouch = () => {
         </div>
 
         <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-          <CustomCard className="bg-gray-50 dark:bg-gray-800 p-6 md:p-8 h-full flex flex-col">
+          <CustomCard className="bg-gradient-to-br from-white to-rose-50/50 dark:bg-gray-800 dark:from-transparent dark:to-transparent p-6 md:p-8 h-full flex flex-col">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white">
               Connect with TokenRadar Labs
             </h3>
@@ -79,7 +79,7 @@ export const GetInTouch = () => {
             </div>
           </CustomCard>
 
-          <CustomCard className="bg-gray-50 dark:bg-gray-800 p-6 md:p-8 h-full flex flex-col">
+          <CustomCard className="bg-gradient-to-br from-white to-rose-50/50 dark:bg-gray-800 dark:from-transparent dark:to-transparent p-6 md:p-8 h-full flex flex-col">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white">
               Contact Form
             </h3>
