@@ -4,7 +4,7 @@ import * as React from "react";
 
 export default function AboutSection() {
   return (
-    <div id="about" className="w-full bg-white dark:bg-slate-950">
+    <div id="about" className="w-full bg-cyan-50 dark:bg-slate-950">
       <section className="py-16 px-4 text-center max-w-7xl mx-auto">
         {/* Main headline with gradient */}
         <h1 className="text-5xl md:text-6xl font-bold mb-6 font-sans">
@@ -22,7 +22,7 @@ export default function AboutSection() {
         {/* Content Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {/* Card 1: Our Mission */}
-          <div className="bg-white dark:bg-slate-800/60 rounded-lg border shadow-md hover:shadow-lg transition-shadow p-8 text-left">
+          <div className="bg-gradient-to-br from-white to-cyan-50/50 dark:bg-slate-800/60 dark:from-transparent dark:to-transparent rounded-lg border shadow-md hover:shadow-lg transition-shadow p-8 text-left">
             <h3 className="text-2xl font-semibold text-slate-800 dark:text-white mb-4">Our Mission</h3>
             <p className="text-slate-600 dark:text-slate-300 mb-6">
               TokenRadar-xyz Tools creates elegant, developer-focused solutions that make
@@ -46,7 +46,7 @@ export default function AboutSection() {
           </div>
           
           {/* Card 2: Key Projects */}
-          <div className="bg-white dark:bg-slate-800/60 rounded-lg border shadow-md hover:shadow-lg transition-shadow p-8 text-left">
+          <div className="bg-gradient-to-br from-white to-cyan-50/50 dark:bg-slate-800/60 dark:from-transparent dark:to-transparent rounded-lg border shadow-md hover:shadow-lg transition-shadow p-8 text-left">
             <h3 className="text-2xl font-semibold text-slate-800 dark:text-white mb-4">Key Projects</h3>
             <div className="space-y-6">
               <div>

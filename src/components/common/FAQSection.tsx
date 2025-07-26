@@ -56,7 +56,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="w-full bg-white dark:bg-slate-950 py-16 px-4">
+    <section className="w-full bg-indigo-50 dark:bg-slate-950 py-16 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -75,7 +75,7 @@ export default function FAQSection() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-slate-800/60 rounded-lg border shadow-sm"
+              className="bg-gradient-to-br from-white to-indigo-50/50 dark:bg-slate-800/60 dark:from-transparent dark:to-transparent rounded-lg border shadow-sm"
             >
               <button
                 onClick={() => toggleFAQ(index)}

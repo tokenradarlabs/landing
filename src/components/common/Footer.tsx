@@ -13,7 +13,7 @@ import Link from "next/link";
  */
 export default function Footer() {
   return (
-    <footer className="bg-[#0A0F23] dark:bg-black text-white py-12">
+    <footer className="bg-gradient-to-br from-slate-50 to-blue-50 dark:from-transparent dark:to-transparent dark:bg-black text-slate-800 dark:text-white py-12">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo and Description */}
@@ -26,7 +26,7 @@ export default function Footer() {
               </div>
               <div className="font-display font-bold text-2xl gradient-text">TokenRadar Labs</div>
             </div>
-            <p className="text-sm text-gray-300 max-w-xs">
+            <p className="text-sm text-slate-600 dark:text-gray-300 max-w-xs">
               Real-time token price tracking and market insights for your crypto community. 
               Empowering blockchain communities with cutting-edge web3 tools.
             </p>
@@ -34,25 +34,25 @@ export default function Footer() {
 
           {/* Features Column */}
           <div className="space-y-4">
-            <h3 className="font-medium text-lg">Features</h3>
+            <h3 className="font-medium text-lg text-slate-900 dark:text-white">Features</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/features/discord-bot" className="text-gray-300 hover:text-blue-400 text-sm">
+                <Link href="/features/discord-bot" className="text-slate-600 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 text-sm">
                   Discord Bot
                 </Link>
               </li>
               <li>
-                <Link href="/features/price-tracking" className="text-gray-300 hover:text-blue-400 text-sm">
+                <Link href="/features/price-tracking" className="text-slate-600 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 text-sm">
                   Price Tracking
                 </Link>
               </li>
               <li>
-                <Link href="/features/smart-alerts" className="text-gray-300 hover:text-blue-400 text-sm">
+                <Link href="/features/smart-alerts" className="text-slate-600 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 text-sm">
                   Smart Alerts
                 </Link>
               </li>
               <li>
-                <Link href="/features/market-analytics" className="text-gray-300 hover:text-blue-400 text-sm">
+                <Link href="/features/market-analytics" className="text-slate-600 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 text-sm">
                   Market Analytics
                 </Link>
               </li>
@@ -61,35 +61,35 @@ export default function Footer() {
 
           {/* Company Column */}
           <div className="space-y-4">
-            <h3 className="font-medium text-lg">Company</h3>
+            <h3 className="font-medium text-lg text-slate-900 dark:text-white">Company</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className="text-gray-300 hover:text-blue-400 text-sm">
+                <Link href="/about" className="text-slate-600 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 text-sm">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-300 hover:text-blue-400 text-sm">
+                <Link href="/contact" className="text-slate-600 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 text-sm">
                   Contact
                 </Link>
               </li>
               <li>
-                <Link href="/docs" className="text-gray-300 hover:text-blue-400 text-sm">
+                <Link href="/docs" className="text-slate-600 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 text-sm">
                   Documentation
                 </Link>
               </li>
               <li>
-                <Link href="/api" className="text-gray-300 hover:text-blue-400 text-sm">
+                <Link href="/api" className="text-slate-600 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 text-sm">
                   API
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="text-gray-300 hover:text-blue-400 text-sm">
+                <Link href="/privacy" className="text-slate-600 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 text-sm">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-gray-300 hover:text-blue-400 text-sm">
+                <Link href="/terms" className="text-slate-600 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 text-sm">
                   Terms & Conditions
                 </Link>
               </li>
@@ -98,25 +98,25 @@ export default function Footer() {
 
           {/* Connect Column */}
           <div className="space-y-4">
-            <h3 className="font-medium text-lg">Connect</h3>
+            <h3 className="font-medium text-lg text-slate-900 dark:text-white">Connect</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="https://discord.gg/tokenradar" className="text-gray-300 hover:text-blue-400 text-sm">
+                <Link href="https://discord.gg/tokenradar" className="text-slate-600 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 text-sm">
                   Discord
                 </Link>
               </li>
               <li>
-                <Link href="https://twitter.com/tokenradarlabs" className="text-gray-300 hover:text-blue-400 text-sm">
+                <Link href="https://twitter.com/tokenradarlabs" className="text-slate-600 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 text-sm">
                   Twitter
                 </Link>
               </li>
               <li>
-                <Link href="https://github.com/tokenradarlabs" className="text-gray-300 hover:text-blue-400 text-sm">
+                <Link href="https://github.com/tokenradarlabs" className="text-slate-600 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 text-sm">
                   GitHub
                 </Link>
               </li>
               <li>
-                <Link href="https://t.me/tokenradar" className="text-gray-300 hover:text-blue-400 text-sm">
+                <Link href="https://t.me/tokenradar" className="text-slate-600 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 text-sm">
                   Telegram
                 </Link>
               </li>
@@ -125,7 +125,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="mt-12 pt-6 border-t border-gray-800 text-center text-sm text-gray-400">
+        <div className="mt-12 pt-6 border-t border-slate-200 dark:border-gray-800 text-center text-sm text-slate-500 dark:text-gray-400">
           © 2025 TokenRadar Labs. All rights reserved. Forging next-generation open-source web3 tools.
         </div>
       </div>

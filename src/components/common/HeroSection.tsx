@@ -6,7 +6,7 @@ import CustomCard from "./CustomCard";
 
 export default function HeroSection() {
   return (
-    <section className="w-full bg-gradient-to-br from-gray-100 via-white to-gray-100 dark:from-[#0A0F23] dark:via-[#0A0F23] dark:to-[#0A0F23]">
+    <section className="w-full bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-[#0A0F23] dark:via-[#0A0F23] dark:to-[#0A0F23]">
       <div className="flex flex-col items-center justify-center py-16 pt-32 px-4 text-center max-w-7xl mx-auto">
         {/* Logo and title in one line */}
         <div className="mb-8 flex items-center justify-center">
