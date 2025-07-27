@@ -89,13 +89,14 @@ export default function Navbar({
     <header className="fixed top-0 left-0 right-0 z-50 glass">
       <div className="container mx-auto px-6 py-4">
         <nav className="flex items-center justify-between relative">
-          {/* Logo and Brand (flex-1 to push right content) */}
-          <div className="flex items-center space-x-3 flex-1 min-w-0">
+          {/* Logo and Brand */}
+          <div className="flex items-center space-x-3">
             <img src="/Icon.png" alt="Logo" className="w-10 h-10 rounded-lg flex-shrink-0" />
-            <div className="font-display font-bold text-2xl gradient-text truncate">TokenRadar Labs</div>
+            <div className="font-display font-bold text-2xl gradient-text">TokenRadar Labs</div>
           </div>
-          {/* Nav Links (hidden on mobile) */}
-          <div className="hidden md:flex items-center space-x-8">
+
+          {/* Nav Links (centered, hidden on mobile) */}
+          <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
             {links.map((link) => (
               link.href.startsWith('#') ? (
                 <button
@@ -118,31 +119,8 @@ export default function Navbar({
             ))}
           </div>
 
-          {/* Right side: nav links (desktop), actions, hamburger (mobile) */}
+          {/* Right side: actions and hamburger (mobile) */}
           <div className="flex items-center space-x-4">
-            {/* Nav Links (hidden on mobile) */}
-            <div className="hidden md:flex items-center space-x-8">
-              {links.map((link) => (
-                link.href.startsWith('#') ? (
-                  <button
-                    key={link.label}
-                    className="text-white hover:text-blue-400 transition-colors cursor-pointer"
-                    type="button"
-                    onClick={() => handleNavClick(link.href)}
-                  >
-                    {link.label}
-                  </button>
-                ) : (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    className="text-white hover:text-blue-400 transition-colors cursor-pointer"
-                  >
-                    {link.label}
-                  </Link>
-                )
-              ))}
-            </div>
 
             {/* Actions: Theme toggle & CTA */}
             <button
