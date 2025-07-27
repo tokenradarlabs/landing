@@ -5,6 +5,7 @@ import AboutSection from "@/components/common/AboutSection";
 import FAQSection from "@/components/common/FAQSection";
 import DeveloperAndSupport from "@/components/common/DeveloperAndSupport";
 import IntegrationPartners from "@/components/common/IntegrationPartners";
+import HighImpactFeatures from "@/components/common/HighImpactFeatures";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <PlatformFeatures />
+      <HighImpactFeatures />
       <DeveloperAndSupport />
       <div className="w-full bg-white dark:bg-[#0A0F23]">
         <IntegrationPartners />
