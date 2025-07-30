@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import CustomButton from "./CustomButton";
 import Link from "next/link";
 
@@ -91,7 +92,7 @@ export default function Navbar({
         <nav className="flex items-center justify-between relative">
           {/* Logo and Brand */}
           <div className="flex items-center space-x-3">
-            <img src="/Icon.png" alt="Logo" className="w-10 h-10 rounded-lg flex-shrink-0" />
+            <Image src="/Icon.png" alt="Logo" width={40} height={40} className="w-10 h-10 rounded-lg flex-shrink-0" />
             <div className="font-display font-bold text-2xl gradient-text">TokenRadar Labs</div>
           </div>
 
