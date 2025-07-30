@@ -1,6 +1,7 @@
 'use client';
 
 import React from "react";
+import Image from "next/image";
 import CustomButton from "./CustomButton";
 import CustomCard from "./CustomCard";
 
@@ -10,7 +11,7 @@ export default function HeroSection() {
       <div className="flex flex-col items-center justify-center py-16 pt-32 px-4 text-center max-w-7xl mx-auto">
         {/* Logo and title in one line */}
         <div className="mb-8 flex items-center justify-center">
-          <img src="/Icon.png" alt="Logo" className="w-15 h-15 rounded-lg" />
+          <Image src="/Icon.png" alt="Logo" width={60} height={60} className="w-15 h-15 rounded-lg" />
           <h3 className="text-xl font-medium font-sans bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">TokenRadar Labs</h3>
         </div>
         
