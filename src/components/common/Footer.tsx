@@ -124,7 +124,27 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Copyright */}
+        <div className="relative mt-10 mb-8 overflow-hidden">
+          <div className="flex justify-center">
+            <div className="grid grid-cols-7 gap-2">
+              {[...Array(7)].map((_, i) => (
+                <div key={i} className="flex flex-col gap-2">
+                  {[...Array(3)].map((_, j) => (
+                    <div 
+                      key={j} 
+                      className={`w-4 h-4 rounded-full bg-gradient-to-r 
+                      ${(i+j) % 3 === 0 ? 'from-blue-400 to-cyan-300' : (i+j) % 3 === 1 ? 'from-indigo-500 to-purple-400' : 'from-blue-600 to-cyan-500'} 
+                      opacity-${50 + ((i+j) % 5) * 10} animate-pulse`} 
+                      style={{animationDelay: `${(i*0.1) + (j*0.2)}s`}}
+                    />
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="absolute inset-x-0 -bottom-4 h-12 bg-gradient-to-t from-slate-50 to-transparent dark:from-black dark:to-transparent"></div>
+        </div>
+        
         <div className="mt-12 pt-6 border-t border-slate-200 dark:border-gray-800 text-center text-sm text-slate-500 dark:text-gray-400">
           © 2025 TokenRadar Labs. All rights reserved. Forging next-generation open-source web3 tools.
         </div>
