@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import CustomButton from "./CustomButton";
 import Link from "next/link";
@@ -85,6 +85,30 @@ export default function Navbar({
     }
     setMobileMenuOpen(false); // Close mobile menu after click
   };
+
+//Close mobile menu when clicking outside as well
+const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+const isMobile = () => window.innerWidth <= 768;
+
+useEffect(() => {
+  function handleClickOutside(event: MouseEvent) {
+    if (
+      mobileMenuOpen &&
+      isMobile() &&
+      mobileMenuRef.current &&
+      !mobileMenuRef.current.contains(event.target as Node)
+    ) {
+      setMobileMenuOpen(false);
+    }
+  }
+
+  document.addEventListener('mousedown', handleClickOutside);
+
+  return () => {
+    document.removeEventListener('mousedown', handleClickOutside);
+  };
+}, [mobileMenuOpen]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass">
@@ -176,7 +200,9 @@ export default function Navbar({
 
           {/* Mobile menu dropdown */}
           {mobileMenuOpen && (
-            <div className="absolute top-full left-0 w-full bg-white/90 dark:bg-gray-900/95 shadow-lg rounded-b-lg flex flex-col items-start px-6 py-4 space-y-4 md:hidden animate-fade-in z-40">
+            <div 
+            ref={mobileMenuRef}
+            className="absolute top-full left-0 w-full bg-white/90 dark:bg-gray-900/95 shadow-lg rounded-b-lg flex flex-col items-start px-6 py-4 space-y-4 md:hidden animate-fade-in z-40">
               {links.map((link) => (
                 link.href.startsWith('#') ? (
                   <button
