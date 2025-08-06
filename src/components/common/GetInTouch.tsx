@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { CustomCard } from "./CustomCard";
 import { CustomButton } from "./CustomButton";
 import { Mail, Globe, MapPin, Send, Check, AlertCircle } from "lucide-react";
+import { toast } from "sonner";
 
 export const GetInTouch = () => {
   const [formState, setFormState] = useState({
@@ -28,8 +29,18 @@ export const GetInTouch = () => {
     setTimeout(() => {
       if (formState.email && formState.fullName && formState.message) {
         setFormStatus('success');
+        toast.success("Message sent successfully!");
+
+        // Reset form fields here:
+      setFormState({
+        fullName: '',
+        email: '',
+        message: ''
+      });
+      
       } else {
         setFormStatus('error');
+        toast.error("Please fill out all required fields.");
       }
       setIsSubmitting(false);
     }, 1500);
