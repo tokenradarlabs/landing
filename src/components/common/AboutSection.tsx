@@ -50,16 +50,16 @@ export default function AboutSection() {
             <h3 className="text-2xl font-semibold text-slate-800 dark:text-white mb-4">Key Projects</h3>
             <div className="space-y-6">
               <div>
-                <h4 className="text-xl font-medium text-blue-500 mb-1">TokenRadar</h4>
-                <p className="text-slate-600 dark:text-slate-300">Real-time token tracking and price alert system for Discord communities.</p>
+                <h4 className="text-xl font-medium text-blue-500 mb-1">Tokenator</h4>
+                <p className="text-slate-600 dark:text-slate-300">Feature rich discord Bot for token price alert.</p>
               </div>
               <div>
-                <h4 className="text-xl font-medium text-cyan-500 mb-1">Market Analytics</h4>
-                <p className="text-slate-600 dark:text-slate-300">Comprehensive market analysis tools with customizable dashboards.</p>
+                <h4 className="text-xl font-medium text-cyan-500 mb-1">TokenRadar-xyz</h4>
+                <p className="text-slate-600 dark:text-slate-300">Real-Time Crypto Market Intelligence.</p>
               </div>
               <div>
-                <h4 className="text-xl font-medium text-purple-500 mb-1">Web3 Integration</h4>
-                <p className="text-slate-600 dark:text-slate-300">Seamless blockchain integration solutions for developers and projects.</p>
+                <h4 className="text-xl font-medium text-purple-500 mb-1">Radar</h4>
+                <p className="text-slate-600 dark:text-slate-300">API service to get latest token updates.</p>
               </div>
             </div>
           </div>
