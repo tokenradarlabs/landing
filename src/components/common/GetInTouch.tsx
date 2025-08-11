@@ -28,12 +28,15 @@ export const GetInTouch = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setFormStatus("idle");
+
+    const toastId = toast.loading("Sending message...");
 
     // Simulate form submission
     setTimeout(() => {
       if (formState.email && formState.fullName && formState.message) {
         setFormStatus("success");
-        toast.success("Message sent successfully!");
+        toast.success("Message sent successfully!", { id: toastId });
 
         // Reset form fields here:
         setFormState({
@@ -43,7 +46,7 @@ export const GetInTouch = () => {
         });
       } else {
         setFormStatus("error");
-        toast.error("Please fill out all required fields.");
+        toast.error("Please fill out all required fields.", { id: toastId });
       }
       setIsSubmitting(false);
     }, 1500);
@@ -264,7 +267,7 @@ export const GetInTouch = () => {
               onSubmit={handleSubmit}
               className="mt-6 space-y-6 flex-1 flex flex-col justify-between"
             >
-              <div className="space-y-6">
+              <fieldset disabled={isSubmitting} aria-busy={isSubmitting} className="space-y-6">
                 <div className="group">
                   <label
                     htmlFor="fullName"
@@ -339,7 +342,7 @@ export const GetInTouch = () => {
                     Subscribe to our newsletter for market updates
                   </label>
                 </div>
-              </div>
+              </fieldset>
 
               <div className="mt-auto pt-6">
                 <CustomButton
