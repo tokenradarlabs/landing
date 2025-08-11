@@ -215,7 +215,7 @@ export default function AboutSection() {
               />
             </h3>
             <p className="text-slate-600 dark:text-slate-300 font-medium">
-              Uptime
+              UPTIME
             </p>
           </div>
         </div>
