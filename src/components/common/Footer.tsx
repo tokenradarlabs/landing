@@ -19,11 +19,7 @@ export default function Footer() {
           {/* Logo and Description */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center shadow-lg">
-                <div className="w-6 h-6 border-2 border-white rounded-full relative">
-                  <div className="absolute inset-1 bg-white rounded-full"></div>
-                </div>
-              </div>
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center shadow-lg" aria-hidden></div>
               <div className="font-display font-bold text-2xl gradient-text">TokenRadar Labs</div>
             </div>
             <p className="text-sm text-slate-600 dark:text-gray-300 max-w-xs">
@@ -124,7 +120,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="relative mt-10 mb-8 overflow-hidden">
+            <div className="relative mt-10 mb-8 overflow-hidden" aria-hidden>
           <div className="flex justify-center">
             <div className="grid grid-cols-7 gap-2">
               {[...Array(7)].map((_, i) => (
