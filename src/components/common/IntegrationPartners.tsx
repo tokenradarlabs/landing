@@ -40,7 +40,8 @@ const IntegrationPartners = () => {
             <div className="w-16 h-16 relative mb-4">
               <Image
                 src={partner.icon}
-                alt={`${partner.name} icon`}
+                alt=""
+                aria-hidden
                 fill
                 className="object-contain"
               />

@@ -6,7 +6,7 @@ import CustomButton from "./CustomButton";
 import CustomCard from "./CustomCard";
 
 export default function HeroSection() {
-  const [statsVisible, setStatsVisible] = useState(true);
+  const [statsVisible] = useState(true);
   
   const marketStats = [
     { label: "Market Cap", value: "$2.1T", change: "+5.2%" },
@@ -18,7 +18,7 @@ export default function HeroSection() {
   return (
     <section className="w-full bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-[#0A0F23] dark:via-[#0A0F23] dark:to-[#0A0F23] relative overflow-hidden">
       {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden" aria-hidden>
         <div className="absolute -top-24 -left-24 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute top-1/2 -right-32 w-80 h-80 bg-purple-400/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
       </div>
@@ -26,7 +26,7 @@ export default function HeroSection() {
       <div className="flex flex-col items-center justify-center py-16 pt-32 px-4 text-center max-w-7xl mx-auto relative z-10">
         {/* Logo and title in one line */}
         <div className="mb-8 flex items-center justify-center">
-          <Image src="/Icon.png" alt="Logo" width={60} height={60} className="w-15 h-15 rounded-lg" />
+          <Image src="/Icon.png" alt="" aria-hidden width={60} height={60} className="w-15 h-15 rounded-lg" />
           <h3 className="text-xl font-medium font-sans bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">TokenRadar Labs</h3>
         </div>
         
@@ -149,10 +149,10 @@ export default function HeroSection() {
                 <h3 className="text-white font-medium text-lg">Market Overview</h3>
                 <p className="text-slate-400 text-sm">Live data visualization</p>
               </div>
-              <div className="flex space-x-2">
-                <button className="text-xs bg-slate-800 hover:bg-slate-700 text-white rounded-md px-3 py-1">24H</button>
-                <button className="text-xs bg-blue-600 text-white rounded-md px-3 py-1">7D</button>
-                <button className="text-xs bg-slate-800 hover:bg-slate-700 text-white rounded-md px-3 py-1">30D</button>
+              <div className="flex space-x-2" role="tablist" aria-label="Time range">
+                <button className="text-xs bg-slate-800 hover:bg-slate-700 text-white rounded-md px-3 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" role="tab" aria-selected={false}>24H</button>
+                <button className="text-xs bg-blue-600 text-white rounded-md px-3 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" role="tab" aria-selected={true}>7D</button>
+                <button className="text-xs bg-slate-800 hover:bg-slate-700 text-white rounded-md px-3 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" role="tab" aria-selected={false}>30D</button>
               </div>
             </div>
             <div className="flex justify-between h-32 relative">

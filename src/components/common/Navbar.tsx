@@ -86,37 +86,91 @@ export default function Navbar({
     setMobileMenuOpen(false); // Close mobile menu after click
   };
 
-//Close mobile menu when clicking outside as well
-const mobileMenuRef = useRef<HTMLDivElement>(null);
+  // Close mobile menu when clicking outside as well
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const hamburgerButtonRef = useRef<HTMLButtonElement>(null);
+  const menuItemRefs = useRef<(HTMLButtonElement | HTMLAnchorElement | null)[]>([]);
 
-const isMobile = () => window.innerWidth <= 768;
+  const isMobile = () => window.innerWidth <= 768;
 
-useEffect(() => {
-  function handleClickOutside(event: MouseEvent) {
-    if (
-      mobileMenuOpen &&
-      isMobile() &&
-      mobileMenuRef.current &&
-      !mobileMenuRef.current.contains(event.target as Node)
-    ) {
-      setMobileMenuOpen(false);
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        mobileMenuOpen &&
+        isMobile() &&
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target as Node)
+      ) {
+        setMobileMenuOpen(false);
+      }
     }
-  }
 
-  document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
 
-  return () => {
-    document.removeEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [mobileMenuOpen]);
+
+  // Focus management for mobile menu
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      // Focus first menu item when opened
+      const firstItem = menuItemRefs.current.find(Boolean) as
+        | HTMLButtonElement
+        | HTMLAnchorElement
+        | undefined;
+      if (firstItem) {
+        // Delay to ensure elements are mounted
+        setTimeout(() => firstItem.focus(), 0);
+      }
+    } else {
+      // Return focus to the hamburger when menu closes
+      hamburgerButtonRef.current?.focus();
+    }
+  }, [mobileMenuOpen]);
+
+  const handleMenuKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (!mobileMenuOpen) return;
+
+    const items = menuItemRefs.current.filter(Boolean) as Array<
+      HTMLButtonElement | HTMLAnchorElement
+    >;
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      setMobileMenuOpen(false);
+      return;
+    }
+    if (event.key === 'Tab' && items.length > 0) {
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement as Element | null;
+      if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      } else if (event.shiftKey && active === first) {
+        event.preventDefault();
+        last.focus();
+      }
+    }
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      const activeIndex = items.findIndex((el) => el === document.activeElement);
+      if (activeIndex !== -1) {
+        const delta = event.key === 'ArrowDown' ? 1 : -1;
+        const nextIndex = (activeIndex + delta + items.length) % items.length;
+        items[nextIndex].focus();
+      }
+    }
   };
-}, [mobileMenuOpen]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass">
       <div className="container mx-auto px-6 py-4">
-        <nav className="flex items-center justify-between relative">
+        <nav className="flex items-center justify-between relative" aria-label="Primary navigation">
           {/* Logo and Brand */}
           <div className="flex items-center space-x-3">
-            <Image src="/Icon.png" alt="Logo" width={40} height={40} className="w-10 h-10 rounded-lg flex-shrink-0" />
+            <Image src="/Icon.png" alt="" aria-hidden width={40} height={40} className="w-10 h-10 rounded-lg flex-shrink-0" />
             <div className="font-display font-bold text-2xl gradient-text">TokenRadar Labs</div>
           </div>
 
@@ -126,7 +180,7 @@ useEffect(() => {
               link.href.startsWith('#') ? (
                 <button
                   key={link.label}
-                  className="text-white hover:text-blue-400 transition-colors cursor-pointer"
+                  className="text-white hover:text-blue-400 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded"
                   type="button"
                   onClick={() => handleNavClick(link.href)}
                 >
@@ -136,7 +190,7 @@ useEffect(() => {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="text-white hover:text-blue-400 transition-colors cursor-pointer"
+                  className="text-white hover:text-blue-400 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded"
                 >
                   {link.label}
                 </Link>
@@ -179,9 +233,12 @@ useEffect(() => {
 
             {/* Hamburger menu button (mobile only) */}
             <button
+              ref={hamburgerButtonRef}
               className="md:hidden flex items-center justify-center w-10 h-10 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               onClick={() => setMobileMenuOpen((open) => !open)}
               aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu"
               type="button"
             >
               {mobileMenuOpen ? (
@@ -200,14 +257,21 @@ useEffect(() => {
 
           {/* Mobile menu dropdown */}
           {mobileMenuOpen && (
-            <div 
-            ref={mobileMenuRef}
-            className="absolute top-full left-0 w-full bg-white/90 dark:bg-gray-900/95 shadow-lg rounded-b-lg flex flex-col items-start px-6 py-4 space-y-4 md:hidden animate-fade-in z-40">
-              {links.map((link) => (
+            <div
+              id="mobile-menu"
+              role="menu"
+              aria-label="Mobile"
+              onKeyDown={handleMenuKeyDown}
+              ref={mobileMenuRef}
+              className="absolute top-full left-0 w-full bg-white/90 dark:bg-gray-900/95 shadow-lg rounded-b-lg flex flex-col items-start px-6 py-4 space-y-4 md:hidden animate-fade-in z-40"
+            >
+              {links.map((link, idx) => (
                 link.href.startsWith('#') ? (
                   <button
                     key={link.label}
-                    className="text-gray-900 dark:text-white text-lg font-medium hover:text-blue-500 transition-colors cursor-pointer w-full text-left"
+                    ref={(el) => { menuItemRefs.current[idx] = el; }}
+                    role="menuitem"
+                    className="text-gray-900 dark:text-white text-lg font-medium hover:text-blue-500 transition-colors cursor-pointer w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 rounded"
                     type="button"
                     onClick={() => handleNavClick(link.href)}
                   >
@@ -217,7 +281,9 @@ useEffect(() => {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="text-gray-900 dark:text-white text-lg font-medium hover:text-blue-500 transition-colors cursor-pointer w-full block"
+                    ref={(el) => { menuItemRefs.current[idx] = el; }}
+                    role="menuitem"
+                    className="text-gray-900 dark:text-white text-lg font-medium hover:text-blue-500 transition-colors cursor-pointer w-full block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 rounded"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {link.label}

@@ -79,7 +79,10 @@ export default function FAQSection() {
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-colors duration-150 rounded-lg"
+                className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-colors duration-150 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                aria-expanded={openIndex === index}
+                aria-controls={`faq-panel-${index}`}
+                id={`faq-button-${index}`}
               >
                 <span className="text-lg font-medium text-slate-800 dark:text-white">
                   {faq.question}
@@ -103,7 +106,12 @@ export default function FAQSection() {
                 </span>
               </button>
               {openIndex === index && (
-                <div className="px-6 pb-4">
+                <div
+                  id={`faq-panel-${index}`}
+                  role="region"
+                  aria-labelledby={`faq-button-${index}`}
+                  className="px-6 pb-4"
+                >
                   <div className="text-slate-600 dark:text-slate-300">
                     {faq.answer}
                   </div>
