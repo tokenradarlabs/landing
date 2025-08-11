@@ -273,3 +273,10 @@
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(65, 132, 234, 0.6);
 }
+
+/* Text wave animation for headings */
+@keyframes wave {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-12px);}
+  75% { transform: translateY(2px);}
+}
