@@ -129,53 +129,12 @@ export default function AboutSection() {
 
         {/* Metrics */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-          {/* AnimatedCounter component */}
-          {/** Place at top of file: */}
-          {/*
-          import React, { useEffect, useState } from "react";
-          type AnimatedCounterProps = {
-            target: number;
-            duration?: number;
-            format?: (n: number) => string;
-            className?: string;
-          };
-          const AnimatedCounter: React.FC<AnimatedCounterProps> = ({ target, duration = 1200, format, className }) => {
-            const [count, setCount] = useState(0);
-            useEffect(() => {
-              let start = 0;
-              const end = target;
-              const increment = end / (duration / 16);
-              let raf: number;
-              function animate() {
-                start += increment;
-                if (start < end) {
-                  setCount(Math.floor(start));
-                  raf = requestAnimationFrame(animate);
-                } else {
-                  setCount(end);
-                }
-              }
-              raf = requestAnimationFrame(animate);
-              return () => cancelAnimationFrame(raf);
-            }, [target, duration]);
-            return <span className={className}>{format ? format(count) : count}</span>;
-          };
-          */}
-
           {/* Metric 1: Active Users */}
           <div className="p-6 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl shadow-md hover:shadow-lg transition-shadow dark:from-blue-500/20 dark:to-purple-500/20">
             <h3 className="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400">
               <AnimatedCounter target={10000} format={n => `${n >= 10000 ? '10K+' : n.toLocaleString()}`} />
             </h3>
             <p className="text-slate-600 dark:text-slate-300 font-medium">Active Users</p>
-              <AnimatedCounter
-                target={10000}
-                format={n => `${n >= 10000 ? "10K+" : n.toLocaleString()}`}
-              />
-            </h3>
-            <p className="text-slate-600 dark:text-slate-300 font-medium">
-              Active Users
-            </p>
           </div>
 
           {/* Metric 2: Discord Servers */}
@@ -184,14 +143,6 @@ export default function AboutSection() {
               <AnimatedCounter target={500} format={n => `${n >= 500 ? '500+' : n}`} />
             </h3>
             <p className="text-slate-600 dark:text-slate-300 font-medium">Discord Servers</p>
-              <AnimatedCounter
-                target={500}
-                format={n => `${n >= 500 ? "500+" : n}`}
-              />
-            </h3>
-            <p className="text-slate-600 dark:text-slate-300 font-medium">
-              Discord Servers
-            </p>
           </div>
 
           {/* Metric 3: Real-Time Data */}
@@ -200,14 +151,6 @@ export default function AboutSection() {
               <AnimatedCounter target={24} format={n => n >= 24 ? '24/7' : `${n}/7`} />
             </h3>
             <p className="text-slate-600 dark:text-slate-300 font-medium">Real-Time Data</p>
-              <AnimatedCounter
-                target={24}
-                format={n => (n >= 24 ? "24/7" : `${n}/7`)}
-              />
-            </h3>
-            <p className="text-slate-600 dark:text-slate-300 font-medium">
-              Real-Time Data
-            </p>
           </div>
 
           {/* Metric 4: Uptime */}
@@ -216,14 +159,6 @@ export default function AboutSection() {
               <AnimatedCounter target={99.9} format={n => n >= 99.9 ? '99.9%' : `${n.toFixed(1)}%`} />
             </h3>
             <p className="text-slate-600 dark:text-slate-300 font-medium">Uptime</p>
-              <AnimatedCounter
-                target={99.9}
-                format={n => (n >= 99.9 ? "99.9%" : `${n.toFixed(1)}%`)}
-              />
-            </h3>
-            <p className="text-slate-600 dark:text-slate-300 font-medium">
-              UPTIME
-            </p>
           </div>
         </div>
       </section>
