@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CustomCard } from "./CustomCard";
 import { CustomButton } from "./CustomButton";
 import { Mail, Globe, MapPin, Send, Check, AlertCircle } from "lucide-react";
@@ -15,6 +15,8 @@ export const GetInTouch = () => {
     "idle"
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const successRef = useRef<HTMLDivElement>(null);
+  const errorRef = useRef<HTMLDivElement>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -28,12 +30,15 @@ export const GetInTouch = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setFormStatus("idle");
+
+    const toastId = toast.loading("Sending message...");
 
     // Simulate form submission
     setTimeout(() => {
       if (formState.email && formState.fullName && formState.message) {
         setFormStatus("success");
-        toast.success("Message sent successfully!");
+        toast.success("Message sent successfully!", { id: toastId });
 
         // Reset form fields here:
         setFormState({
@@ -43,11 +48,19 @@ export const GetInTouch = () => {
         });
       } else {
         setFormStatus("error");
-        toast.error("Please fill out all required fields.");
+        toast.error("Please fill out all required fields.", { id: toastId });
       }
       setIsSubmitting(false);
     }, 1500);
   };
+
+  useEffect(() => {
+    if (formStatus === "success") {
+      successRef.current?.focus();
+    } else if (formStatus === "error") {
+      errorRef.current?.focus();
+    }
+  }, [formStatus]);
 
   return (
     <section
@@ -55,9 +68,9 @@ export const GetInTouch = () => {
       className="bg-gradient-to-b from-rose-50 to-slate-50 dark:from-gray-800 dark:to-gray-900 py-12 md:py-20 relative overflow-hidden"
     >
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-pink-200/20 dark:bg-pink-900/10 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-200/20 dark:bg-blue-900/10 rounded-full blur-3xl"></div>
+      <div aria-hidden className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+      <div aria-hidden className="absolute -top-40 -right-40 w-80 h-80 bg-pink-200/20 dark:bg-pink-900/10 rounded-full blur-3xl"></div>
+      <div aria-hidden className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-200/20 dark:bg-blue-900/10 rounded-full blur-3xl"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center">
@@ -220,7 +233,7 @@ export const GetInTouch = () => {
             {/* Decorative background elements */}
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-200/20 dark:bg-blue-800/20 rounded-full blur-3xl"></div>
 
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center">
+            <h3 id="contact-form-title" className="text-2xl font-bold text-gray-900 dark:text-white flex items-center">
               Contact Form
               <span className="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-cyan-500 text-white">
                 Secure
@@ -228,7 +241,13 @@ export const GetInTouch = () => {
             </h3>
 
             {formStatus === "success" && (
-              <div className="mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-800/30 rounded-lg flex items-start">
+               <div
+                 ref={successRef}
+                 tabIndex={-1}
+                 role="status"
+                 aria-live="polite"
+                 className="mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-800/30 rounded-lg flex items-start focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500"
+               >
                 <div className="flex-shrink-0 mt-0.5">
                   <Check className="h-5 w-5 text-green-500" />
                 </div>
@@ -245,7 +264,13 @@ export const GetInTouch = () => {
             )}
 
             {formStatus === "error" && (
-              <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800/30 rounded-lg flex items-start">
+               <div
+                 ref={errorRef}
+                 tabIndex={-1}
+                 role="alert"
+                 aria-live="assertive"
+                 className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800/30 rounded-lg flex items-start focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
+               >
                 <div className="flex-shrink-0 mt-0.5">
                   <AlertCircle className="h-5 w-5 text-red-500" />
                 </div>
@@ -262,9 +287,10 @@ export const GetInTouch = () => {
 
             <form
               onSubmit={handleSubmit}
+              aria-labelledby="contact-form-title"
               className="mt-6 space-y-6 flex-1 flex flex-col justify-between"
             >
-              <div className="space-y-6">
+              <fieldset disabled={isSubmitting} aria-busy={isSubmitting} className="space-y-6">
                 <div className="group">
                   <label
                     htmlFor="fullName"
@@ -277,10 +303,12 @@ export const GetInTouch = () => {
                       type="text"
                       name="fullName"
                       id="fullName"
+                      aria-required="true"
                       placeholder="Your full name"
                       value={formState.fullName}
                       onChange={handleChange}
                       className="block w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 sm:text-sm"
+                      required
                     />
                   </div>
                 </div>
@@ -297,11 +325,13 @@ export const GetInTouch = () => {
                       type="email"
                       name="email"
                       id="email"
+                      aria-required="true"
                       placeholder="your.email@example.com"
                       value={formState.email}
                       onChange={handleChange}
                       className="block w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 sm:text-sm"
-                    />
+                      required
+                     />
                   </div>
                 </div>
 
@@ -317,10 +347,12 @@ export const GetInTouch = () => {
                       id="message"
                       name="message"
                       rows={4}
+                      aria-required="true"
                       placeholder="Tell us about your project or questions..."
                       value={formState.message}
                       onChange={handleChange}
                       className="block w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 sm:text-sm"
+                      required
                     ></textarea>
                   </div>
                 </div>
@@ -339,7 +371,7 @@ export const GetInTouch = () => {
                     Subscribe to our newsletter for market updates
                   </label>
                 </div>
-              </div>
+              </fieldset>
 
               <div className="mt-auto pt-6">
                 <CustomButton
@@ -347,6 +379,7 @@ export const GetInTouch = () => {
                   className="w-full text-white bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 shadow-md hover:shadow-lg py-3 transition-all duration-300 disabled:opacity-70"
                   leftIcon={isSubmitting ? null : <Send size={16} />}
                   disabled={isSubmitting}
+                  aria-label={isSubmitting ? "Sending message" : "Send message"}
                 >
                   {isSubmitting ? (
                     <div className="flex items-center justify-center">
@@ -380,7 +413,7 @@ export const GetInTouch = () => {
                   By submitting this form, you agree to our{" "}
                   <a
                     href="#"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                   >
                     Privacy Policy
                   </a>
@@ -418,6 +451,7 @@ export const GetInTouch = () => {
                   <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.995a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z" />
                 </svg>
               }
+              aria-label="Join our Discord server"
             >
               Join Discord
             </CustomButton>
