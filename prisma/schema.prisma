@@ -22,4 +22,3 @@ model ContactForm {
   subscribe Boolean  @default(false)
   createdAt DateTime @default(now())
 }
-
