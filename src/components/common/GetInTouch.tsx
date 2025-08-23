@@ -4,6 +4,10 @@ import { CustomCard } from "./CustomCard";
 import { CustomButton } from "./CustomButton";
 import { Mail, Globe, MapPin, Send, Check, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import { saveContact } from "@/app/get-in-touch/serverActions";
 
 export const GetInTouch = () => {
   const [formState, setFormState] = useState({
@@ -27,38 +31,40 @@ export const GetInTouch = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setFormStatus("idle");
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  setFormStatus("idle");
 
-    const toastId = toast.loading("Sending message...");
+  const form = e.currentTarget; // store the form reference
+  const formData = new FormData(form);
 
-    // Simulate form submission
-    setTimeout(() => {
-      if (formState.email && formState.fullName && formState.message) {
-        setFormStatus("success");
-        toast.success("Message sent successfully!", { id: toastId });
+  try {
+    const result = await saveContact(formData);
 
-        // Reset form fields here:
-        setFormState({
-          fullName: "",
-          email: "",
-          message: "",
-        });
-      } else {
-        setFormStatus("error");
-        toast.error("Please fill out all required fields.", { id: toastId });
-      }
-      setIsSubmitting(false);
-    }, 1500);
-  };
+    if (result?.ok) {
+      setFormStatus("success");
+      form.reset(); // use stored reference
+      toast.success("Message sent successfully!");
+    } else {
+      setFormStatus("error");
+      toast.error(result?.error || "Failed to send message.");
+      console.log(result?.error);
+    }
+  } catch (error) {
+    console.error("Form submission error:", error);
+    setFormStatus("error");
+    toast.error("An unexpected error occurred.");
+  } finally {
+    setIsSubmitting(false); // spinner disappears
+  }
+};
+
 
   useEffect(() => {
-    if (formStatus === "success") {
-      successRef.current?.focus();
-    } else if (formStatus === "error") {
-      errorRef.current?.focus();
+    if (formStatus !== "idle") {
+      const timer = setTimeout(() => setFormStatus("idle"), 5000);
+      return () => clearTimeout(timer);
     }
   }, [formStatus]);
 
@@ -68,9 +74,18 @@ export const GetInTouch = () => {
       className="bg-gradient-to-b from-rose-50 to-slate-50 dark:from-gray-800 dark:to-gray-900 py-12 md:py-20 relative overflow-hidden"
     >
       {/* Decorative elements */}
-      <div aria-hidden className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
-      <div aria-hidden className="absolute -top-40 -right-40 w-80 h-80 bg-pink-200/20 dark:bg-pink-900/10 rounded-full blur-3xl"></div>
-      <div aria-hidden className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-200/20 dark:bg-blue-900/10 rounded-full blur-3xl"></div>
+      <div
+        aria-hidden
+        className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+      ></div>
+      <div
+        aria-hidden
+        className="absolute -top-40 -right-40 w-80 h-80 bg-pink-200/20 dark:bg-pink-900/10 rounded-full blur-3xl"
+      ></div>
+      <div
+        aria-hidden
+        className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-200/20 dark:bg-blue-900/10 rounded-full blur-3xl"
+      ></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center">
@@ -230,24 +245,24 @@ export const GetInTouch = () => {
           </CustomCard>
 
           <CustomCard className="bg-gradient-to-br from-white to-rose-50/50 dark:from-gray-800/80 dark:to-gray-900/80 backdrop-blur-sm p-6 md:p-8 h-full flex flex-col shadow-lg border border-rose-100/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300 relative overflow-hidden">
-            {/* Decorative background elements */}
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-200/20 dark:bg-blue-800/20 rounded-full blur-3xl"></div>
-
-            <h3 id="contact-form-title" className="text-2xl font-bold text-gray-900 dark:text-white flex items-center">
+            <h3
+              id="contact-form-title"
+              className="text-2xl font-bold text-gray-900 dark:text-white flex items-center"
+            >
               Contact Form
               <span className="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-cyan-500 text-white">
                 Secure
               </span>
             </h3>
-
             {formStatus === "success" && (
-               <div
-                 ref={successRef}
-                 tabIndex={-1}
-                 role="status"
-                 aria-live="polite"
-                 className="mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-800/30 rounded-lg flex items-start focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500"
-               >
+              <div
+                ref={successRef}
+                tabIndex={-1}
+                role="status"
+                aria-live="polite"
+                className="mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-800/30 rounded-lg flex items-start focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500"
+              >
                 <div className="flex-shrink-0 mt-0.5">
                   <Check className="h-5 w-5 text-green-500" />
                 </div>
@@ -262,15 +277,14 @@ export const GetInTouch = () => {
                 </div>
               </div>
             )}
-
             {formStatus === "error" && (
-               <div
-                 ref={errorRef}
-                 tabIndex={-1}
-                 role="alert"
-                 aria-live="assertive"
-                 className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800/30 rounded-lg flex items-start focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
-               >
+              <div
+                ref={errorRef}
+                tabIndex={-1}
+                role="alert"
+                aria-live="assertive"
+                className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800/30 rounded-lg flex items-start focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
+              >
                 <div className="flex-shrink-0 mt-0.5">
                   <AlertCircle className="h-5 w-5 text-red-500" />
                 </div>
@@ -290,7 +304,11 @@ export const GetInTouch = () => {
               aria-labelledby="contact-form-title"
               className="mt-6 space-y-6 flex-1 flex flex-col justify-between"
             >
-              <fieldset disabled={isSubmitting} aria-busy={isSubmitting} className="space-y-6">
+              <fieldset
+                disabled={isSubmitting}
+                aria-busy={isSubmitting}
+                className="space-y-6"
+              >
                 <div className="group">
                   <label
                     htmlFor="fullName"
@@ -299,20 +317,15 @@ export const GetInTouch = () => {
                     Full Name <span className="text-red-500">*</span>
                   </label>
                   <div className="mt-2 relative rounded-md shadow-sm">
-                    <input
+                    <Input
                       type="text"
                       name="fullName"
                       id="fullName"
-                      aria-required="true"
-                      placeholder="Your full name"
-                      value={formState.fullName}
-                      onChange={handleChange}
-                      className="block w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 sm:text-sm"
                       required
+                      placeholder="Your full name"
                     />
                   </div>
                 </div>
-
                 <div>
                   <label
                     htmlFor="email"
@@ -321,20 +334,15 @@ export const GetInTouch = () => {
                     Email Address <span className="text-red-500">*</span>
                   </label>
                   <div className="mt-2 relative rounded-md shadow-sm">
-                    <input
+                    <Input
                       type="email"
                       name="email"
                       id="email"
-                      aria-required="true"
-                      placeholder="your.email@example.com"
-                      value={formState.email}
-                      onChange={handleChange}
-                      className="block w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 sm:text-sm"
                       required
-                     />
+                      placeholder="your.email@example.com"
+                    />
                   </div>
                 </div>
-
                 <div>
                   <label
                     htmlFor="message"
@@ -343,27 +351,17 @@ export const GetInTouch = () => {
                     Message <span className="text-red-500">*</span>
                   </label>
                   <div className="mt-2 relative rounded-md shadow-sm">
-                    <textarea
+                    <Textarea
                       id="message"
                       name="message"
                       rows={4}
-                      aria-required="true"
-                      placeholder="Tell us about your project or questions..."
-                      value={formState.message}
-                      onChange={handleChange}
-                      className="block w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 sm:text-sm"
                       required
-                    ></textarea>
+                      placeholder="Tell us about your project or questions..."
+                    />
                   </div>
                 </div>
-
                 <div className="flex items-center">
-                  <input
-                    id="newsletter"
-                    name="newsletter"
-                    type="checkbox"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
+                  <Checkbox id="newsletter" name="newsletter" />
                   <label
                     htmlFor="newsletter"
                     className="ml-2 block text-sm text-gray-600 dark:text-gray-400"
@@ -372,7 +370,6 @@ export const GetInTouch = () => {
                   </label>
                 </div>
               </fieldset>
-
               <div className="mt-auto pt-6">
                 <CustomButton
                   type="submit"
@@ -409,6 +406,7 @@ export const GetInTouch = () => {
                     "Send Message"
                   )}
                 </CustomButton>
+
                 <p className="mt-3 text-xs text-center text-gray-500 dark:text-gray-400">
                   By submitting this form, you agree to our{" "}
                   <a
