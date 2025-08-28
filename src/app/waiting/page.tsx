@@ -1,6 +1,6 @@
 import { useContactFormCount } from "@/lib/contactForm";
 
-export default async function LandingPage() {
+export default async function WaitingListPage() {
   const count = await useContactFormCount();
 
   return (
