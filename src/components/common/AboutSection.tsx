@@ -9,7 +9,12 @@ type AnimatedCounterProps = {
   className?: string;
 };
 
-const AnimatedCounter: React.FC<AnimatedCounterProps> = ({ target, duration = 1200, format, className }) => {
+const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
+  target,
+  duration = 1200,
+  format,
+  className,
+}) => {
   const [count, setCount] = React.useState(0);
   React.useEffect(() => {
     let start = 0;
@@ -62,7 +67,7 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {/* Card 1: Our Mission */}
           <div className="bg-gradient-to-br from-white to-cyan-50/50 dark:bg-slate-800/60 dark:from-transparent dark:to-transparent rounded-lg border shadow-md hover:shadow-lg transition-shadow p-8 text-left">
-            <h3 className="text-2xl font-semibold text-slate-800 dark:text-white mb-4">
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-300 via-cyan-400 to-purple-400 text-transparent bg-clip-text drop-shadow">
               Our Mission
             </h3>
             <p className="text-slate-600 dark:text-slate-300 mb-6">
@@ -95,9 +100,10 @@ export default function AboutSection() {
 
           {/* Card 2: Key Projects */}
           <div className="bg-gradient-to-br from-white to-cyan-50/50 dark:bg-slate-800/60 dark:from-transparent dark:to-transparent rounded-lg border shadow-md hover:shadow-lg transition-shadow p-8 text-left">
-            <h3 className="text-2xl font-semibold text-slate-800 dark:text-white mb-4">
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-sky-400 via-teal-400 to-purple-400 text-transparent bg-clip-text drop-shadow">
               Key Projects
             </h3>
+
             <div className="space-y-6">
               <div>
                 <h4 className="text-xl font-medium text-blue-500 mb-1">
@@ -132,33 +138,53 @@ export default function AboutSection() {
           {/* Metric 1: Active Users */}
           <div className="p-6 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl shadow-md hover:shadow-lg transition-shadow dark:from-blue-500/20 dark:to-purple-500/20">
             <h3 className="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400">
-              <AnimatedCounter target={10000} format={n => `${n >= 10000 ? '10K+' : n.toLocaleString()}`} />
+              <AnimatedCounter
+                target={10000}
+                format={n => `${n >= 10000 ? "10K+" : n.toLocaleString()}`}
+              />
             </h3>
-            <p className="text-slate-600 dark:text-slate-300 font-medium">Active Users</p>
+            <p className="text-slate-600 dark:text-slate-300 font-medium">
+              Active Users
+            </p>
           </div>
 
           {/* Metric 2: Discord Servers */}
           <div className="p-6 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl shadow-md hover:shadow-lg transition-shadow dark:from-purple-500/20 dark:to-pink-500/20">
             <h3 className="text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400">
-              <AnimatedCounter target={500} format={n => `${n >= 500 ? '500+' : n}`} />
+              <AnimatedCounter
+                target={500}
+                format={n => `${n >= 500 ? "500+" : n}`}
+              />
             </h3>
-            <p className="text-slate-600 dark:text-slate-300 font-medium">Discord Servers</p>
+            <p className="text-slate-600 dark:text-slate-300 font-medium">
+              Discord Servers
+            </p>
           </div>
 
           {/* Metric 3: Real-Time Data */}
           <div className="p-6 bg-gradient-to-br from-pink-500/10 to-red-500/10 rounded-xl shadow-md hover:shadow-lg transition-shadow dark:from-pink-500/20 dark:to-red-500/20">
             <h3 className="text-3xl md:text-4xl font-bold text-pink-600 dark:text-pink-400">
-              <AnimatedCounter target={24} format={n => n >= 24 ? '24/7' : `${n}/7`} />
+              <AnimatedCounter
+                target={24}
+                format={n => (n >= 24 ? "24/7" : `${n}/7`)}
+              />
             </h3>
-            <p className="text-slate-600 dark:text-slate-300 font-medium">Real-Time Data</p>
+            <p className="text-slate-600 dark:text-slate-300 font-medium">
+              Real-Time Data
+            </p>
           </div>
 
           {/* Metric 4: Uptime */}
           <div className="p-6 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-xl shadow-md hover:shadow-lg transition-shadow dark:from-cyan-500/20 dark:to-blue-500/20">
             <h3 className="text-3xl md:text-4xl font-bold text-cyan-600 dark:text-cyan-400">
-              <AnimatedCounter target={99.9} format={n => n >= 99.9 ? '99.9%' : `${n.toFixed(1)}%`} />
+              <AnimatedCounter
+                target={99.9}
+                format={n => (n >= 99.9 ? "99.9%" : `${n.toFixed(1)}%`)}
+              />
             </h3>
-            <p className="text-slate-600 dark:text-slate-300 font-medium">Uptime</p>
+            <p className="text-slate-600 dark:text-slate-300 font-medium">
+              Uptime
+            </p>
           </div>
         </div>
       </section>
