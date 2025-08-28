@@ -131,7 +131,7 @@ export default function HeroSection() {
             Start Tracking
           </CustomButton>
           <CustomButton
-            className="bg-slate-800 text-white dark:bg-white dark:text-slate-900 px-8 py-6 rounded-lg flex items-center border border-slate-200 dark:border-slate-700 hover:bg-slate-900 dark:hover:bg-slate-100 transition-all duration-300 shadow-md hover:shadow-lg"
+            className="bg-slate-800 text-white dark:bg-white dark:text-slate-900 px-8 py-6 rounded-lg flex items-center border border-slate-200 dark:border-slate-700 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-0.5  hover:bg-gradient-to-r hover:from-blue-500 hover:to-cyan-500 hover:text-white hover:border-transparent"
             leftIcon={
               <svg
                 xmlns="http://www.w3.org/2000/svg"
