@@ -305,3 +305,15 @@
 .animate-slideInRight {
   animation: slideInRight 0.9s cubic-bezier(.39,.575,.565,1.000) both;
 }
+/* Animated gradient for heading text */
+@layer utilities {
+  .animate-gradient-move {
+    background-size: 200% 200%;
+    animation: gradientMove 3s linear infinite;
+  }
+  @keyframes gradientMove {
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+  }
+}
